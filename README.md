@@ -3,8 +3,9 @@
 for airflow only:
 docker-compose.yml
 
-2. container: add python container together:
+#2. container: add python container together:
 docker-compose_python.yml
 
 
-# set network connection in yaml
+## set network connection in yaml:
+docker compose -f nginx-compose.yaml up -d
