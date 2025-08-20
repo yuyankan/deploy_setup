@@ -24,6 +24,9 @@ docker run --rm -v grafana_volume_data:/data -v /my_tmp:/backup alpine tar -czf 
 use ubuntu:
 docker run --rm -v grafana_volume_data:/data -v /my_tmp:/backup ubuntu tar -czf /backup/grafana_volume_data.tar.gz -C /data .
 
+## file transfer
+scp -r carenk@ip:/home/carenk/my_temp/  C:\Users/0185972/myenv/ot_server/
+
 # Docker 数据卷迁移命令：参数与命令全解析
 
 ## 完整命令示例
