@@ -1,0 +1,197 @@
+.main-content h1 {
+    color: #1c4587; /* DeepSkyBlue is #00BFFF, DarkBlue is #00008B, or choose another dark blue HEX code */
+    font-size: 2.8em; /* Adjust as needed, 'em' is relative to parent font size, or use 'px' for fixed size */
+    text-align: center; /* Centers the text horizontally */
+    margin-top: 20px; /* Add some top margin if needed */
+    margin-bottom: 30px; /* Add some bottom margin if needed */
+}
+
+/* 基础样式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex; /* 使用 Flexbox 布局 */
+    min-height: 100vh; /* 确保内容区至少占满视口高度 */
+    background-color: #f4f4f4;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box; /* 包含 padding 在宽度内 */
+    flex-shrink: 0; /* 防止侧边栏被压缩 */
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #eee;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active { /* active 类可以在 JS 中动态添加，表示当前选中 */
+    background-color: #575757;
+}
+
+/* 主内容区域样式 */
+.main-content {
+    flex-grow: 1; /* 占据剩余空间 */
+    padding: 20px 40px;
+    overflow-y: auto; /* 如果内容溢出，允许滚动 */
+}
+
+.section {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-height: 180px;
+    max-height: 800;
+}
+
+.section h2 {
+    color: #333;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+/* 平滑滚动效果，通过 CSS 实现 */
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+
+/* Container for function blocks */
+.function-blocks {
+    display: flex; /* Use flexbox to lay out blocks in a row */
+    flex-wrap: wrap; /* Allow blocks to wrap to the next line on smaller screens */
+    gap: 20px; /* Space between blocks */
+    margin-top: 25px; /* Space above the blocks */
+    justify-content: space-around;/*center; /* Center the blocks if there's extra space */
+    min-width: 220px; /* Minimum width for each block */
+    max-width: 1000px; /* Minimum width for each block */
+    /*border: 2px solid #4CAF50; /* Green border (adjust color as needed) */
+}
+
+/* Individual function block styling */
+.func-block {
+    display: block; /* Make the link a block to fill the padding/border area */
+    padding: 15px 25px; /* Padding inside the block */
+    border: 2px solid #595959; /* Green border (adjust color as needed) */
+    border-radius: 8px; /* Slightly rounded corners */
+    text-decoration: none; /* Remove underline from links */
+    color: black; /* Charcoal color for text (adjust as needed) */
+    background-color: #efefefff; /* Light background for the block */
+    font-size: 1.0em; /* Font size for the block text */
+    font-weight: 600;
+    text-align: center; /* Center text within the block */
+    min-width: 220px; /* Minimum width for each block */
+    max-width: 220px; /* Minimum width for each block */
+    flex: 1; /* **Changed from flex: 1 to flex: none; to prevent growing and just respect min/max width** */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease; /* Smooth transitions for hover effects */
+}
+
+.func-block:hover {
+    background-color: #d9ead3ff; /* Lighter green on hover */
+    border-color: #d9ead3ff; /* Keep border color consistent or change it */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+
+
+/* --- New Column Layout Styles --- */
+.three-column-container {
+    display: flex; /* Makes it a flex container */
+    gap: 80px; /* Space between the columns */
+    margin-top: 40px; /* Space above this new section */
+    margin-left: 40px;
+    flex-wrap: wrap; /* Allows columns to wrap on smaller screens */
+    align-items: flex-start; /* Aligns columns to the top if they have different heights */
+}
+
+.column {
+    flex: 1 1 0%; /* This is the key: shorthand for flex-grow, flex-shrink, and flex-basis */
+    /* flex-grow: 1;  Each column will grow to take up available space */
+    /* flex-shrink: 1; Each column can shrink if needed */
+    /* flex-basis: 0%;  Each column starts with a base width of 0, allowing them to truly share space equally */
+
+    /* min-width and max-width are still useful for responsiveness if you want to prevent them from getting too squished or too wide */
+    min-width: 280px; /* Minimum width for each column before wrapping */
+    /* max-width: 400px; /* Optional: set a max width to prevent them from becoming excessively wide on very large screens */
+
+    padding: 20px;
+    background-color: #f0f8ff; /* Light azure background for columns */
+    border: 1px solid #cceeff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* ... (rest of your style.css code) ... */
+.column h3 {
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #cceeff;
+    font-size:1.0em;
+}
+
+/* Specific styling for Column 1 (c1) to make its content vertical */
+.column.c1 {
+    display: flex;
+    flex-direction: column;
+    max-width: 100px;
+    gap: 15px;
+    /*margin-right: 60px;*/
+}
+
+.c1-row-block {
+    display: block; /* Make the link behave like a block-level element */
+    background-color: #e6f7ff;
+    padding: 15px;
+    border: 1px solid #99daff;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px; /* Corrected: Changed 'size' to 'font-size' */
+    color: #0056b3; /* Set the font color for the link */
+    text-decoration: none; /* Remove the default underline for links */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+
+.c1-row-block:hover {
+    background-color: #d1efff;
+    border-color: #0056b3; /* Optional: change border on hover */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}

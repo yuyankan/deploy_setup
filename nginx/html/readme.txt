@@ -1,0 +1,1 @@
+scp -r . carenk@10.161.81.13:~/00_enviroment/01_nginx/html/
