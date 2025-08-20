@@ -17,3 +17,7 @@ docker compse -f xxx.yml up -d(后台）
 
 #4. check docker container log
 docker logs containerid
+
+
+#download docker volume:
+docker run --rm -v grafana_volume_data:/data -v /my_tmp:/backup alpine tar -czf /backup/grafana_volume_data.tar.gz -C /data .
