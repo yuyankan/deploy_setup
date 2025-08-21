@@ -1,0 +1,11 @@
+
+
+# streamlit_app/.streamlit/config.toml
+[server]
+port = 8501
+address = "0.0.0.0"
+enableCORS = false
+enableXsrfProtection = false
+# 配置 Streamlit 的基础 URL 路径，与 Nginx 的 location 路径匹配
+baseUrlPath = "/streamlit-spc"
+layout = "wide" # ❗  在这里设置，作为全局默认
