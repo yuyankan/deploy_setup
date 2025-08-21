@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  # 这里的服务名（app）可以自定义，但要和 devcontainer.json 里的 "service" 字段保持一致
+  app:
+    image: ppe_arm_tool:202508
+    container_name: ppe_arm_tool
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspaces/my_project
+    command: /bin/sh -c "while sleep 1000; do :; done"
