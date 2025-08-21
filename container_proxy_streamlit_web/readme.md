@@ -51,3 +51,40 @@ textColor="#FFFFFF"
 [server]
 port = 8501
 maxUploadSize = 200
+```
+=============================================================================================================================================================================
+## docker-compose.yml
+
+这是 Docker Compose 的配置文件。它的作用是定义和管理多个 Docker 容器应用。这个文件描述了你的整个应用栈（例如一个 Web 应用、一个数据库和一个消息队列）需要哪些服务，以及它们如何互相连接。
+
+### 主要作用:
+- 服务定义：定义每个容器服务（例如 webserver、database）使用的镜像、构建指令和环境变量。
+- 网络和卷：定义容器之间的网络连接和数据持久化的卷。
+- 运行参数：设置每个容器的端口映射、用户权限、资源限制等。
+
+### 举例:
+```yaml
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  streamlit-app:
+    image: my-streamlit-image
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+
+  database:
+    image: postgres:14
+    # 可补充数据库相关配置，如环境变量、卷挂载等
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
