@@ -9,7 +9,7 @@ docker-compose_python.yml
 ============================================================================================
 # 3. airflow container: 与其他container 通信，使用：
 ## socket：
-'''
+
   # 通用卷挂载 (引用另一个锚点) - AIRFLOW_PROJ_DIR 的使用方式保持不变
   volumes: &airflow-common-volumes
     - airflow-dags:/opt/airflow/dags # 使用命名卷
@@ -17,9 +17,9 @@ docker-compose_python.yml
     - airflow-config:/opt/airflow/config # 使用命名卷
     - airflow-plugins:/opt/airflow/plugins # 使用命名卷
     - /var/run/docker.sock:/var/run/docker.sock # <-- **Docker Socket 挂载已加入**
-'''
+
 ## network : set network_docker_common_nginxuse as docker network
-'''
+
 networks: &airflow-common-network                                                                                                                                                                                 
  - airflow_network
 
@@ -28,7 +28,7 @@ networks:
   airflow_network:
     external: true
     name: network_docker_common_nginxuse
-    '''
+   
 
 =========================================================================================
 # airflow container: 用户权限管理：
