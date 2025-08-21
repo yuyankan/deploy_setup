@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  streamlit:
+    image: python_env_common_streamlit:202507
+    container_name: streamlit_spc_maintain
+
+    working_dir: /app/work
+    volumes:
+      - ./:/app/work
+    networks:
+      - shared_network
+    expose:
+      - "8501"  # 只在网络内部可见
+    command: python -m streamlit run app_spc.py --server.port 8501 --server.address 0.0.0.0 --server.enableCORS false --server.enableXsrfProtection false
+
+networks:
+  shared_network:
+    external: true
+    name: network_docker_common_nginxuse
