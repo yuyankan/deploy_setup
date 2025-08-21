@@ -1,0 +1,24 @@
+{
+  "name": "kernal_com",
+
+  // 指向你的 docker-compose.yml 文件
+  "dockerComposeFile": "../my-compose.yml",
+
+  // 指定 VS Code 连接到哪个服务
+  "service": "ppe_arm_tool",
+
+  // 指定 VS Code 在容器内的工作区路径
+  "workspaceFolder": "/workspaces/my_project",
+
+  "settings": {
+    "python.defaultInterpreterPath": "/usr/local/bin/python"
+  },
+
+  "extensions": [
+    "ms-python.python"
+  ],
+
+  "postCreateCommand": "pip install -r requirements_new_added.txt",
+
+  "forwardPorts": []
+}
