@@ -36,6 +36,7 @@ devcontainer.json 是 Dev Container 技术栈的核心配置文件，主要作�
     "ghcr.io/devcontainers/features/git:1": {}
   }
 }
+```
 ===============================
 ## 2. Dockerfile：构建容器镜像的蓝图
 
@@ -76,3 +77,56 @@ COPY . .
 
 # 容器启动命令
 CMD ["python", "app.py"]
+```
+
+
+============================================
+## 3. docker-compose.yml：多服务环境的编排者
+
+docker-compose.yml 是 Docker Compose 的配置文件，用于定义和管理多个相互依赖的容器服务（如应用服务、数据库、缓存等）。通过一个文件即可实现多容器的统一启动、停止和网络配置。
+
+### 核心作用
+- 多服务协同：用一个命令（`docker compose up`）启动所有依赖服务（如前端、后端、数据库）。
+- 网络自动配置：为服务创建独立网络，服务间可通过名称直接通信（如 `db` 服务可被 `app` 服务通过 `db:5432` 访问）。
+- 数据持久化：通过数据卷（volumes）保存数据库、日志等重要数据，避免容器销毁后数据丢失。
+
+### 常见配置字段
+- `version`：指定 Docker Compose 版本（如 `3.8`）。
+- `services`：定义所有服务的配置（核心字段）。
+  - `build`：指定构建镜像的配置（如 `context: .` 指向 Dockerfile 所在目录）。
+  - `image`：直接使用现有镜像（如 `postgres:14`，无需构建）。
+  - `volumes`：挂载数据卷（如 `./data:/app/data` 映射本地目录到容器）。
+  - `ports`：端口映射（格式为 `本地端口:容器端口`，如 `5432:5432`）。
+  - `environment`：设置环境变量（如数据库用户名、密码）。
+  - `depends_on`：定义服务启动顺序（如 `app` 依赖 `db` 先启动）。
+- `volumes`：声明命名数据卷（用于持久化数据，如数据库存储）。
+
+### 示例
+```yaml
+version: '3.8'
+
+services:
+  app:
+    build: .  # 基于当前目录的 Dockerfile 构建
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./src:/app/src  # 本地代码目录映射到容器
+    environment:
+      - DATABASE_URL=postgresql://user:pass@db:5432/mydb
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # 持久化数据库数据
+
+volumes:
+  postgres_data:  # 命名数据卷，独立于容器生命周期
