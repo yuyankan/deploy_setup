@@ -36,7 +36,7 @@ networks:
 user: &airflow-common-user
   "${AIRFLOW_UID:-50000}:0"
 group_add:
-  # This GID must match the GID of the 'docker' group on your host.
+  ### This GID must match the GID of the 'docker' group on your host.
   - 999
   
     # Docker Compose 中 group_add 指令的作用与原理
