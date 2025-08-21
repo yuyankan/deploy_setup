@@ -36,3 +36,43 @@ devcontainer.json 是 Dev Container 技术栈的核心配置文件，主要作�
     "ghcr.io/devcontainers/features/git:1": {}
   }
 }
+===============================
+## 2. Dockerfile：构建容器镜像的蓝图
+
+Dockerfile 是 Docker 官方的镜像构建配置文件，包含一系列指令，用于从基础镜像开始逐步构建自定义镜像。可以理解为 “镜像食谱”，详细描述了环境的依赖、配置和初始化步骤。
+
+### 核心作用
+- 定义基础环境：指定操作系统（如 Ubuntu）、编程语言版本（如 Python 3.11）、系统级依赖（如 libpq-dev）。
+- 优化构建效率：通过分层构建和缓存机制，减少重复安装大体积依赖（如系统库）的时间。
+- 固化环境配置：确保所有开发者使用完全一致的基础镜像，避免 “本地能跑，部署失败” 的问题。
+
+### 常用指令
+- `FROM`：指定基础镜像（如 python:3.11-slim、ubuntu:22.04）。
+- `WORKDIR`：设置容器内的工作目录（后续命令默认在此目录执行）。
+- `COPY`：将本地文件 / 目录复制到镜像中（如 COPY requirements.txt .）。
+- `RUN`：在镜像构建阶段执行命令（如 apt-get install 或 pip install）。
+- `ENV`：设置环境变量（如 ENV PYTHONDONTWRITEBYTECODE=1）。
+- `CMD`：容器启动时默认执行的命令（可被运行时命令覆盖）。
+
+### 示例
+```dockerfile
+# 基础镜像
+FROM python:3.11-slim
+
+# 设置工作目录
+WORKDIR /app
+
+# 安装系统依赖
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# 复制依赖文件并安装
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 复制项目代码
+COPY . .
+
+# 容器启动命令
+CMD ["python", "app.py"]
