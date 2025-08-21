@@ -32,13 +32,13 @@ networks:
 
 =========================================================================================
 # airflow container: 用户权限管理：
-'''
+
 user: &airflow-common-user
   "${AIRFLOW_UID:-50000}:0"
 group_add:
   # This GID must match the GID of the 'docker' group on your host.
   - 999
-    '''
+  
     # Docker Compose 中 group_add 指令的作用与原理
 
 在 Docker Compose 中，`group_add` 指令允许你将容器内的用户添加到宿主机上指定的额外用户组中。这对于处理权限问题非常关键。
