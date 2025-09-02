@@ -1,7 +1,14 @@
 #file usage:
-1: mount: server pic 2 server-fastapi: 01_mount.sh
-2: create image: 02_Dockerfile,  (set proxy), requirement.txt,03_creat_image.sh
-3: create container: 04_docker-cmopose.yml, main.py, 05_docker_con.sh: for quick start /end: bash docker_con.sh start/end
+##1: mount:server pic 2 server-fastapi: 
+    01_mount.sh
+##2: create image: 
+    02_Dockerfile,
+    requirement.txt,
+    03_creat_image.sh(set proxy)\n
+##3: create container: 
+    04_docker-cmopose.yml, 
+    main.py,
+    05_docker_con.sh: for quick start /end: bash docker_con.sh start/end
 
 ===================================================================================================================================
 
