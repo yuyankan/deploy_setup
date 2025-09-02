@@ -1,3 +1,11 @@
+#file usage:
+1: mount: server pic 2 server-fastapi: 01_mount.sh
+2: create image: 02_Dockerfile,  (set proxy), requirement.txt,03_creat_image.sh
+3: create container: 04_docker-cmopose.yml, main.py, 05_docker_con.sh: for quick start /end: bash docker_con.sh start/end
+
+===================================================================================================================================
+
+
 # 背景：外部访问server2的图片： url 格式
 ## 方案1： 在sever2上直接启动 web 服务
 ## 方案2： 在另外一个server上 启动代理-fastapi 访问 server2 图片； 外部应用url 即可：
