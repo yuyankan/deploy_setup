@@ -1,4 +1,6 @@
-#  fast api 外部访问：
+# conf 文件放置nginx 配置的conf.d文件夹内， 后执行： docker exec my-nginx nginx -s reload
+
+#  fast api 外部访问：: 
 # IP: 8010(ngnix port)/korean_api/images/xxxxxx
  : ip transfer:
  1. input: IP: 8010(ngnix port)/korean_api/images/xxxxxx-->server1: recevied by nginx: 
