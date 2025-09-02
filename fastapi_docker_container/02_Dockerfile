@@ -1,0 +1,24 @@
+# 使用你指定的 Python 基础镜像
+FROM python_env_common:202507
+
+# 设置工作目录，这是你应用代码在容器内的位置
+WORKDIR /app
+
+# 将 requirements.txt 复制到容器中
+# 建议在项目根目录创建一个 requirements.txt 文件，并将所有依赖列在其中
+COPY requirements.txt .
+
+# 安装所有 Python 依赖
+RUN pip install -r requirements.txt
+
+# 将所有应用代码复制到容器中
+COPY . .
+
+# 暴露 FastAPI 应用运行的端口，这里是 8000
+EXPOSE 8000
+
+# 运行你的应用。这里使用 uvicorn 作为 ASGI 服务器。
+# --host 0.0.0.0 允许外部访问
+# main:app 指的是 main.py 文件中的 app 对象
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+~                                                                     
